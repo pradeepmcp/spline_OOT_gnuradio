@@ -1,0 +1,6 @@
+# CMake generated Testfile for 
+# Source directory: /Users/pradmc/gnuradio/OOT/gr-custom_resampler/apps
+# Build directory: /Users/pradmc/gnuradio/OOT/gr-custom_resampler/python/apps
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
