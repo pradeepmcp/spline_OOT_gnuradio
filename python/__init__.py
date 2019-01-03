@@ -32,4 +32,5 @@ except ImportError:
 
 # import any pure python here
 from spline_resampler_fff import spline_resampler_fff
+from spline_interoplator import spline_interoplator
 #

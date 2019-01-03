@@ -21,9 +21,9 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-from spline_resampler_fff import spline_resampler_fff
+from spline_interoplator import spline_interoplator
 
-class qa_spline_resampler_fff (gr_unittest.TestCase):
+class qa_spline_interoplator (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -33,18 +33,21 @@ class qa_spline_resampler_fff (gr_unittest.TestCase):
 
     def test_001_t (self):
         # set up fg
-        src_data = (1, 2, 3, 4)
-        expected_result = (1, 2, 2, 4, 3, 6, 4, 8)
-        src = blocks.vector_source_f(src_data)
-        resampler = spline_resampler_fff(interpolation=2, decimation=1)
-        dst = blocks.vector_sink_f()
-        self.tb.connect(src, resampler)
-        self.tb.connect(resampler, dst)
+        self.src_data = (1, 2, 3, 4)
+        self.expected_result = (1, 2, 2, 4, 3, 6, 4, 8)
+        self.src = blocks.vector_source_f(self.src_data)
+        self.spline_interpolate = spline_interoplator(2)
+        
+        self.dst = blocks.vector_sink_f()
+        self.tb.connect(self.src, self.spline_interpolate)
+        self.tb.connect(self.spline_interpolate, self.dst)
+        
         self.tb.run ()
         # check data
-        result_data  = dst.data()
-        print(result_data)
-        self.assertFloatTuplesAlmostEqual(expected_result, result_data, 6)
+        self.result_data  = self.dst.data()
+        print(self.result_data)
+        self.assertFloatTuplesAlmostEqual(self.expected_result, self.result_data, 6)
+
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_spline_resampler_fff, "qa_spline_resampler_fff.xml")
+    gr_unittest.run(qa_spline_interoplator, "qa_spline_interoplator.xml")

@@ -1,6 +1,6 @@
 <testsuite errors="1" failures="0" name="unittest.suite.TestSuite" tests="1" time="0.004">
-  <testcase classname="__main__.qa_spline_resampler_fff" name="test_001_t" time="0.0040">
-    <error type="exceptions.ValueError">itemsize mismatch: vector_source_i0:0 using 4, spline_resampler_fff0:0 using 2
+  <testcase classname="__main__.qa_spline_resampler_fff" name="test_001_t" time="0.0044">
+    <error type="exceptions.ValueError">itemsize mismatch: vector_source_f0:0 using 4, spline_resampler_fff0:0 using 2
   File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/case.py", line 329, in run
     testMethod()
   File "qa_spline_resampler_fff.py", line 41, in test_001_t

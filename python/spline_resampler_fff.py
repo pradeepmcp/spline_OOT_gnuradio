@@ -29,16 +29,16 @@ class spline_resampler_fff(gr.basic_block):
     def __init__(self, interpolation=1, decimation=1):
         gr.basic_block.__init__(self,
             name="spline_resampler_fff",
-            in_sig=[numpy.int16],
+            in_sig=[numpy.float32],
             #out_sig=[(numpy.int16,interpolation/decimation)])
-            out_sig=[numpy.int16])
+            out_sig=[numpy.float32])
         self.interpolation = interpolation
         self.decimation = decimation
 
     def forecast(self, noutput_items, ninput_items_required):
         for i in range(len(ninput_items_required)):
-            #ninput_items_required[i] = noutput_items * self.decimation/self.interpolation
-            ninput_items_required[i] = noutput_items
+            ninput_items_required[i] = noutput_items * self.decimation/self.interpolation - 1
+            #ninput_items_required[i] = noutput_items
         
         print("forecast", noutput_items, noutput_items * self.decimation/self.interpolation)
 
@@ -47,17 +47,24 @@ class spline_resampler_fff(gr.basic_block):
         out0 = output_items[0]
         print("work input_items", len(input_items))
         print("work output items", len(output_items))
-        print("in0",len(in0))
-        print(len(out0))
+        print(len(in0))
         
+        
+        out0 = output_items[0][:len(in0)*2]
+        print(len(out0))
         i=0
+        j=0
         #for i in range (len(out0)):
-        while i < len(out0):
-            out0[i] = in0[i]
-            out0[i+1] = in0[i]*3
+        while i < len(in0)-1:
+            #out0[i] = in0[i]
+            out0[j] = in0[i]
+            out0[j+1] = in0[i]*2
+            #out0 = numpy.append(out0, in0[i]*2)
             i = i+1
+            j = j+2
         
         #consume(0, len(xinput_items[0]))
-        self.consume(0, len(in0)/2)
+        self.consume(0, len(in0)-1)
         #self.consume_each(len(input_items[0]))
-        return len(output_items[0])
+        #return len(output_items[0])
+        return (len(in0))

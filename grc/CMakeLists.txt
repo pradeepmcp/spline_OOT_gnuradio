@@ -19,5 +19,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    custom_resampler_spline_resampler_fff.xml DESTINATION share/gnuradio/grc/blocks
+    custom_resampler_spline_resampler_fff.xml
+    custom_resampler_spline_interoplator.xml DESTINATION share/gnuradio/grc/blocks
 )
