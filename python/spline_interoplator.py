@@ -20,7 +20,9 @@
 # 
 
 import numpy
+#from scipy.interpolate import interpolate.interp1d
 from gnuradio import gr
+from scipy.interpolate.interpolate import interp1d
 
 class spline_interoplator(gr.interp_block):
     """
@@ -31,27 +33,22 @@ class spline_interoplator(gr.interp_block):
             name="spline_interoplator",
             in_sig=[numpy.float32],
             out_sig=[numpy.float32], interp=interpolation)
+        self.interpolation = interpolation
         
     
     def work(self, input_items, output_items):
         in0 = input_items[0]
-        out0 = output_items[0]
-        # <+signal processing here+>
-        print("in",len(in0))
-        print("out",len(out0)) 
+        out0 = output_items[0] 
+        
+        # scipy's interp1d expects atleast 4 datapoints
+        if len(in0) < 4:
+            return 0
                
-        
-        i=0
-        j=0
-        #for i in range (len(out0)):
-        while i < len(in0):
-            #out0[i] = in0[i]
-            out0[j] = in0[i]
-            out0[j+1] = in0[i]*2
-            #out0 = numpy.append(out0, in0[i]*2)
-            i = i+1
-            j = j+2
-        
-        self.set_history(4)
+        n = numpy.linspace(0, len(in0), num=len(in0))
+        f = interp1d(n, in0, kind='cubic')
+        outn = numpy.linspace(0, len(in0), num=len(in0)*self.interpolation, endpoint=False)
+        tmp_out = f(outn)
+        out0[:] = tmp_out[:]
+
         return len(output_items[0])
 
