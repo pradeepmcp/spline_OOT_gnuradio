@@ -32,5 +32,5 @@ except ImportError:
 
 # import any pure python here
 
-from spline_interoplator import spline_interoplator
+from spline_interpolator import spline_interpolator
 #

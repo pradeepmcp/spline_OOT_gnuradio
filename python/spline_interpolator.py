@@ -24,13 +24,13 @@ import numpy
 from gnuradio import gr
 from scipy.interpolate.interpolate import interp1d
 
-class spline_interoplator(gr.interp_block):
+class spline_interpolator(gr.interp_block):
     """
-    docstring for block spline_interoplator
+    docstring for block spline_interpolator
     """
     def __init__(self, interpolation):
         gr.interp_block.__init__(self,
-            name="spline_interoplator",
+            name="spline_interpolator",
             in_sig=[numpy.float32],
             out_sig=[numpy.float32], interp=interpolation)
         self.interpolation = interpolation

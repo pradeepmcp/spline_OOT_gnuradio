@@ -32,7 +32,7 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    spline_interoplator.py DESTINATION ${GR_PYTHON_DIR}/custom_resampler
+    spline_interpolator.py DESTINATION ${GR_PYTHON_DIR}/custom_resampler
 )
 
 ########################################################################
@@ -42,4 +42,4 @@ include(GrTest)
 
 set(GR_TEST_TARGET_DEPS gnuradio-custom_resampler)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
-GR_ADD_TEST(qa_spline_interoplator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_spline_interoplator.py)
+GR_ADD_TEST(qa_spline_interpolator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_spline_interpolator.py)

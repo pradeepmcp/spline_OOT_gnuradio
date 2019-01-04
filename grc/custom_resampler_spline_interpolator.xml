@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>spline_interoplator</name>
-  <key>custom_resampler_spline_interoplator</key>
+  <name>spline_interpolator</name>
+  <key>custom_resampler_spline_interpolator</key>
   <category>[custom_resampler]</category>
   <import>import custom_resampler</import>
-  <make>custom_resampler.spline_interoplator($interpolation)</make>
+  <make>custom_resampler.spline_interpolator($interpolation)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name

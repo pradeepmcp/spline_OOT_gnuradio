@@ -23,7 +23,7 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 from spline_interoplator import spline_interoplator
 
-class qa_spline_interoplator (gr_unittest.TestCase):
+class qa_spline_interpolator (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -50,4 +50,4 @@ class qa_spline_interoplator (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_spline_interoplator, "qa_spline_interoplator.xml")
+    gr_unittest.run(qa_spline_interpolator, "qa_spline_interpolator.xml")
